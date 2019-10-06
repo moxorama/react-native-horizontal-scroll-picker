@@ -27,3 +27,6 @@ const timeItems = ['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'
     onSelect={this._selectTime}
 />
 ```
+
+
+Special thanks to Alexei https://github.com/gvoz
