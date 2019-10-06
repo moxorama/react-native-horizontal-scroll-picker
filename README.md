@@ -7,7 +7,8 @@ This is a small react-native library for picking item from horizontall scroll
 
 ![](doc/timeline.gif)
 
--
+---
+
 ## Usage
 
 1) Install react-native-gesture handler. If you are using Expo - it sould work out of box.
