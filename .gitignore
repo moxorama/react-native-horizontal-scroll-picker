@@ -1,0 +1,13 @@
+# Logs
+*.log
+npm-debug.log
+.expo/*
+
+# Runtime data
+tmp
+build
+dist
+.DS_Store
+
+# Dependency directory
+node_modules

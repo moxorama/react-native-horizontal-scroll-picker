@@ -1,0 +1,34 @@
+{
+  "name": "react-native-horizontal-scroll-picker",
+  "version": "0.1.0",
+  "description": "React Native horizontal scroll picker",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/moxorama/react-native-horizontal-scroll-picker.git"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "Scroll",
+    "Select",
+    "Timeline",
+    "Horizontal",
+    "select"
+  ],
+  "author": "George Khromchenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moxorama/react-native-lineselect/issues"
+  },
+  "homepage": "https://github.com/moxorama/react-native-lineselect#readme",
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.56.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
+}
