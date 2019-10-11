@@ -15,7 +15,7 @@ class HorizontalScrollPicker extends Component {
 
         this.state = {
             size: width / props.rowItems,
-            selected: 1,
+            selected: 0,
         };
 
         this.scrollView = null;
@@ -31,10 +31,11 @@ class HorizontalScrollPicker extends Component {
     };
 
     _renderItem = (item, idx) => {
-        const { size } = this.state;
-        const { textStyle } = this.props;
+        const { size, selected } = this.state;
+        const { itemStyle, textStyle, selectedTextStyle } = this.props;
 
         const { label, value } = item;
+
 
         return (
             <View
@@ -43,11 +44,15 @@ class HorizontalScrollPicker extends Component {
                     styles.itemContainer,
                     {
                         width: size,
-                        height: size,
                     },
+                    itemStyle
                 ]}
             >
-                <Text style={[styles.item, textStyle]}>{label}</Text>
+                <Text style={[styles.item, textStyle,
+                    (selected == idx) && selectedTextStyle
+                ]}>
+                    {label}
+                </Text>
             </View>
         );
     };
@@ -72,7 +77,7 @@ class HorizontalScrollPicker extends Component {
                 this.scrollView.scrollTo({ y: 0, x: size * selected, animated: true });
                 onSelect(items[selected].value);
             }
-        }, 250);
+        }, 150);
     };
 
     _cancelParking = () => {
@@ -85,6 +90,7 @@ class HorizontalScrollPicker extends Component {
 
         const idx = Math.abs(Math.round(this.scrollOffset / size));
         const selected = idx === items.length ? idx - 1 : idx;
+
         this.setState({
             selected,
         });
@@ -95,22 +101,21 @@ class HorizontalScrollPicker extends Component {
 
 
     render() {
-        const { items, rowItems, containerStyle, selectedStyle } = this.props;
+        const { items, rowItems, containerStyle, selectorStyle } = this.props;
         const { size } = this.state;
 
         const sideItems = (rowItems - 1) / 2;
 
         return (
-            <View style={[styles.timelineContainer, { height: size, width: rowItems * size }, containerStyle]}>
+            <View style={[styles.timelineContainer, { width: rowItems * size }, containerStyle]}>
                 <View
                     style={[
                         styles.selectedItem,
                         {
                             left: sideItems * size,
                             width: size,
-                            height: size,
                         },
-                        selectedStyle
+                        selectorStyle
                     ]}
                 />
                 <ScrollView
@@ -130,7 +135,6 @@ class HorizontalScrollPicker extends Component {
                     contentContainerStyle={{
                         paddingLeft: size * sideItems,
                         paddingRight: size * sideItems,
-                        height: size,
                     }}
                 >
                     {items.map((item, idx) => this._renderItem(item, idx))}
@@ -143,8 +147,10 @@ class HorizontalScrollPicker extends Component {
 HorizontalScrollPicker.propTypes = {
     rowItems: PropTypes.number,
     containerStyle: ViewPropTypes.style,
-    selectedStyle: ViewPropTypes.style,
-    textStyle: ViewPropTypes.style,
+    itemStyle: ViewPropTypes.style,
+    selectorStyle: ViewPropTypes.style,
+    textStyle: Text.propTypes.style,
+    selectedTextStyle: Text.propTypes.style,
     items: PropTypes.array,
     onSelect: PropTypes.func.isRequired
 };
