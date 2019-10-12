@@ -13,9 +13,11 @@ class HorizontalScrollPicker extends Component {
     constructor(props) {
         super(props);
 
+        const size = width / props.rowItems;
+
         this.state = {
-            size: width / props.rowItems,
-            selected: 0,
+            size,
+            selected: props.initialIdx,
         };
 
         this.scrollView = null;
@@ -23,11 +25,16 @@ class HorizontalScrollPicker extends Component {
         this.isParking = false;
     }
 
+
     _calculateLayout = (event) => {
-        const { rowItems } = this.props;
+        const { rowItems, initialIdx } = this.props;
 
         const { width } = event.nativeEvent.layout;
-        this.setState({ size: width / rowItems });
+        const size = width / rowItems;
+
+        this.setState({ size });
+        this.scrollView.scrollTo({ x: initialIdx * size, y: 0, animated: false });
+
     };
 
     _renderItem = (item, idx) => {
@@ -152,12 +159,14 @@ HorizontalScrollPicker.propTypes = {
     textStyle: Text.propTypes.style,
     selectedTextStyle: Text.propTypes.style,
     items: PropTypes.array,
-    onSelect: PropTypes.func.isRequired
+    onSelect: PropTypes.func.isRequired,
+    initialIdx: PropTypes.number.isRequired
 };
 
 HorizontalScrollPicker.defaultProps = {
     rowItems: rowItems,
     items: [],
+    initialIdx: 0,
 };
 
 export default HorizontalScrollPicker;
