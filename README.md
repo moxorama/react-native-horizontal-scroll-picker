@@ -21,10 +21,14 @@ const timeItems = ['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'
 ...
 
 <HorizontalScrollPicker
-    items={_.map(timeItems, (item) => {
-        return { label: item, value: item}
-    })}
-    onSelect={this._selectTime}
+    items={timeItems}
+    textStyle={styles.timeSlot}
+    containerStyle={styles.scrollPickerContainer}
+    itemStyle={styles.item}
+    selectedTextStyle={styles.selectedItem}
+    selectorStyle={styles.selector}
+    onSelect={onSelect}
+    initialIdx={initialIdx}
 />
 ```
 
