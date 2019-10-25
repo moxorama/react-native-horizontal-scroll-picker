@@ -27,14 +27,7 @@ class HorizontalScrollPicker extends Component {
 
 
     _calculateLayout = (event) => {
-        const { rowItems, initialIdx } = this.props;
-
-        const { width } = event.nativeEvent.layout;
-        const size = width / rowItems;
-
-        this.setState({ size });
         this.scrollView.scrollTo({ x: initialIdx * size, y: 0, animated: false });
-
     };
 
     _renderItem = (item, idx) => {
